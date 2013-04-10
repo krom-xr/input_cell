@@ -1,0 +1,30 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8">
+
+    <title>Прикольный инпут</title>
+    <script src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
+
+    <!--http://digitalbush.com/projects/masked-input-plugin/ - тут примеры использования-->
+    <script src="https://raw.github.com/digitalBush/jquery.maskedinput/1.3.1/dist/jquery.maskedinput.js" type="text/javascript" charset="utf-8"></script> 
+
+    <script src="jquery.input_cell.js" type="text/javascript" charset="utf-8"></script> 
+    <script type="text/javascript" charset="utf-8">
+        $(document).ready(function() {
+            $("input.input_cell").inputCell({
+                linecolor: "#eee"
+            }).mask("(999) 999-9999");
+        });
+    </script>
+    <style type="text/css" media="screen">
+    </style>
+    
+</head>
+<body>
+    <input class="input_cell" type="text" name="" value="Проверка значения" /><br/>
+    <input class="input_cell" type="text" name="" value="........ ........" />
+
+    
+</body>
+</html>
