@@ -5,7 +5,9 @@
             o = $.extend({
                 letter_spacing: "2ex",
                 padding_left: '1px',
-                linecolor: '#ccc'
+                linecolor: '#ccc',
+                bgr_linewidth: '1',
+
         }, options);
         var bgr_linewidth = 1;
 
@@ -38,7 +40,7 @@
             canvas.height = height;
             var ctx = canvas.getContext('2d');
             ctx.fillStyle = o.linecolor;
-            ctx.fillRect(width - bgr_linewidth, 0, bgr_linewidth, height);
+            ctx.fillRect(width - o.bgr_linewidth, 0, o.bgr_linewidth, height);
             return canvas.toDataURL();
         };
 
@@ -47,7 +49,7 @@
             var letter_width = get_letter_width($this);
             var bgr = get_background(letter_width, $this.height());
             var size = $this.attr('size');
-            var corrected_size = letter_width * size - parseInt(o.padding_left) - bgr_linewidth;
+            var corrected_size = letter_width * size - parseInt(o.padding_left) - o.bgr_linewidth;
             $this.css('width', corrected_size + 'px');
             $this.css('background', "url(" + bgr + ")");
         });
