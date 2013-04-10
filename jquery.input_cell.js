@@ -7,6 +7,7 @@
                 padding_left: '1px',
                 linecolor: '#ccc'
         }, options);
+        var bgr_linewidth = 1;
 
         $this.css('padding-left', o.padding_left);
 
@@ -37,7 +38,7 @@
             canvas.height = height;
             var ctx = canvas.getContext('2d');
             ctx.fillStyle = o.linecolor;
-            ctx.fillRect(width - 1, 0, 1, height);
+            ctx.fillRect(width - bgr_linewidth, 0, bgr_linewidth, height);
             return canvas.toDataURL();
         };
 
@@ -45,6 +46,9 @@
             var $this = $(this);
             var letter_width = get_letter_width($this);
             var bgr = get_background(letter_width, $this.height());
+            var size = $this.attr('size');
+            var corrected_size = letter_width * size - parseInt(o.padding_left) - bgr_linewidth;
+            $this.css('width', corrected_size + 'px');
             $this.css('background', "url(" + bgr + ")");
         });
 
