@@ -31,7 +31,7 @@
             $input.after($temp_div);
             var w = $temp_div.width();
             $temp_div.remove();
-            return w
+            return w;
         };
 
         var get_background = function(width, height) {
@@ -49,9 +49,27 @@
             var letter_width = get_letter_width($this);
             var bgr = get_background(letter_width, $this.height());
             var size = $this.attr('size');
-            var corrected_size = letter_width * size - parseInt(o.padding_left) - o.bgr_linewidth;
-            $this.css('width', corrected_size + 'px');
+            //var corrected_size = letter_width * size - parseInt(o.padding_left) - o.bgr_linewidth;
+            var corrected_size = letter_width * size;
+            //$this.css('width', corrected_size + 'px');
             $this.css('background', "url(" + bgr + ")");
+
+            var $wrapper = $("<div></div>");
+            $this.after($wrapper);
+
+            //console.log(
+                //$this.css('border-right-width'),
+                //$this.css('border-right-color'),
+                //$this.css('border-right-style')
+            //);
+            $wrapper.css('border-right-width', $this.css('border-right-width'));
+            $wrapper.css('border-right-color', $this.css('border-right-color'));
+            $wrapper.css('border-right-style', $this.css('border-right-style'));
+
+            $wrapper.append($this);
+            $wrapper.css('width', corrected_size + 'px');
+            $wrapper.css('overflow', 'hidden');
+
         });
 
         return $this;
