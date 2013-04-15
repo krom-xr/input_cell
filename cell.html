@@ -12,10 +12,11 @@
     <script src="jquery.input_cell.js" type="text/javascript" charset="utf-8"></script> 
     <script type="text/javascript" charset="utf-8">
         $(document).ready(function() {
+            $.mask.definitions['*']='[А-Яа-яA-Za-z0-9]';
             $("input.input_cell").inputCell({
                 linecolor: "#eee",
                 padding_left: '6px',
-            }).mask("(999) 999-9999");
+            }).mask("(***) ***-****");
         });
     </script>
     <style type="text/css" media="screen">
@@ -23,7 +24,7 @@
     
 </head>
 <body>
-    <input class="input_cell" type="text" name="" size="5" value="Проверка значения" /><br/>
+    <input class="input_cell" type="text" name="" size="5" value="test" /><br/>
     <input class="input_cell" type="text" name="" size="14" value="........ ........" />
 
     
