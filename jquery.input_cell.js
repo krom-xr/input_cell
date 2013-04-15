@@ -1,4 +1,5 @@
 (function($) {
+
     $.fn.inputCell = function(options) {
         var $this = $(this),
             font_family = "Consolas,Monaco,Lucida Console,Liberation Mono,DejaVu Sans Mono,Bitstream Vera Sans Mono,Courier New, monospace",
@@ -70,8 +71,49 @@
             $wrapper.css('width', corrected_size + 'px');
             $wrapper.css('overflow', 'hidden');
 
+            $this.on('keydown', function(e, data) {
+                if (e.keyCode === 39) {
+                    if (doGetCaretPosition($this.get(0)) > (size - 2)) {
+                        return false;
+                    };
+                }
+            })
+
         });
 
         return $this;
     };
+
+    /* this code from http://stackoverflow.com/questions/2897155/get-cursor-position-within-an-text-input-field/2897229#2897229 */
+    /*
+    ** Returns the caret (cursor) position of the specified text field.
+    ** Return value range is 0-oField.value.length.
+    */
+    function doGetCaretPosition (oField) {
+        var iCaretPos = 0;
+
+        // IE Support
+        if (document.selection) {
+
+        // Set focus on the element
+            oField.focus ();
+
+            // To get cursor position, get empty selection range
+            var oSel = document.selection.createRange ();
+
+            // Move selection start to 0 position
+            oSel.moveStart ('character', -oField.value.length);
+
+            // The caret position is selection length
+            iCaretPos = oSel.text.length;
+        } 
+        // Firefox support
+        else if (oField.selectionStart || oField.selectionStart == '0') {
+            iCaretPos = oField.selectionStart;
+        }
+
+        // Return results
+        return (iCaretPos);
+    }
+
 })(jQuery);
